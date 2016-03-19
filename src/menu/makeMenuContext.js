@@ -126,9 +126,10 @@ module.exports = (React, { constants, model, styles }) => {
     },
     _registerMenu(name, hooks) {
       if (this._menus[name]) {
-        console.warn(`Menu ${name} has already been registered in this context. Please provide a different name.`);
+        Object.assign(this._menus[name], hooks);
+      } else {
+        this._menus[name] = hooks;
       }
-      this._menus[name] = hooks;
     },
     _unregisterMenu(name) {
       delete this._menus[name];
